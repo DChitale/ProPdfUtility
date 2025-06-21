@@ -1,0 +1,592 @@
+:root {
+    --primary-bg-light: #F5F7FA;
+    --header-bg-light: #D32F2F;
+    --text-color-light: #2B2D42;
+    --accent-color-light: #FF5252;
+    --card-bg-light: #FFFFFF;
+    --card-hover-bg-light: #FFEBEE;
+    --card-hover-text-light: #D32F2F;
+    --button-hover-bg-light: #C62828;
+    --header-link-hover-bg-light: rgba(0, 0, 0, 0.1); /* Subtle dark overlay for white text on red bg */
+
+    --primary-bg-dark: #1E1E2F;
+    --header-bg-dark: #D32F2F; /* Kept same for brand color */
+    --text-color-dark: #EAEAEA;
+    --accent-color-dark: #FF5252; /* Kept same for brand color */
+    --card-bg-dark: #2C2C3C;
+    --card-hover-bg-dark: #3a3a4a; 
+    --card-hover-text-dark: #FF5252; 
+    --button-hover-bg-dark: #C62828;
+    --header-link-hover-bg-dark: rgba(0, 0, 0, 0.2); /* Slightly more prominent for dark mode */
+
+
+    --soft-box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    --border-radius: 6px;
+    --transition-speed: 0.3s;
+}
+
+[data-theme="dark"] {
+    --primary-bg: var(--primary-bg-dark);
+    --header-bg: var(--header-bg-dark);
+    --text-color: var(--text-color-dark);
+    --accent-color: var(--accent-color-dark);
+    --card-bg: var(--card-bg-dark);
+    --card-hover-bg: var(--card-hover-bg-dark);
+    --card-hover-text: var(--card-hover-text-dark);
+    --button-hover-bg: var(--button-hover-bg-dark);
+    --header-link-hover-bg: var(--header-link-hover-bg-dark);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: var(--primary-bg, var(--primary-bg-light));
+    color: var(--text-color, var(--text-color-light));
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure footer sticks to bottom */
+}
+
+header {
+    background-color: var(--header-bg, var(--header-bg-light));
+    color: white;
+    padding: 1rem 1.5rem; /* Adjusted padding */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    /* Removed position: relative; as theme switcher is now part of flex flow */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.site-title-link {
+    text-decoration: none;
+    color: inherit; /* Inherits white from header */
+}
+
+.site-title-link h1 {
+    margin: 0;
+    font-size: 1.8rem; /* Adjusted for better balance with nav */
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* Space between nav and theme switcher */
+}
+
+.header-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem; /* Space between nav items */
+}
+
+.header-nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-speed);
+}
+
+.header-nav a:hover,
+.header-nav a:focus {
+    background-color: var(--header-link-hover-bg, var(--header-link-hover-bg-light));
+}
+
+.theme-switcher {
+    /* position: absolute; top: 50%; right: 20px; transform: translateY(-50%); */ /* Removed absolute positioning */
+    display: flex;
+    align-items: center;
+    color: white; /* Already set by header, but good to be explicit */
+}
+
+.theme-switcher label {
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+
+#darkModeToggle {
+    cursor: pointer;
+}
+
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-grow: 1; /* Allows main to take up available space */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tool-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.tool-card {
+    background-color: var(--card-bg, var(--card-bg-light));
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--soft-box-shadow);
+    transition: transform var(--transition-speed), background-color var(--transition-speed), color var(--transition-speed);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    background-color: var(--card-hover-bg, var(--card-hover-bg-light));
+}
+
+.tool-card:hover h2, .tool-card:hover p {
+    color: var(--card-hover-text, var(--card-hover-text-light));
+}
+
+.tool-card h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: var(--text-color, var(--text-color-light));
+    transition: color var(--transition-speed);
+}
+
+.tool-card p {
+    flex-grow: 1;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: var(--text-color, var(--text-color-light));
+    opacity: 0.8;
+    transition: color var(--transition-speed);
+}
+
+.tool-button, .tool-card button {
+    background-color: var(--accent-color, var(--accent-color-light));
+    color: white;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color var(--transition-speed);
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+}
+
+.tool-button:hover, .tool-card button:hover {
+    background-color: var(--button-hover-bg, var(--button-hover-bg-light));
+}
+
+/* Tool Workspace */
+.tool-workspace-container {
+    background-color: var(--card-bg, var(--card-bg-light));
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--soft-box-shadow);
+    margin-top: 2rem;
+}
+
+#current-tool-title {
+    margin-top: 0;
+    color: var(--text-color, var(--text-color-light));
+}
+
+#back-to-tools {
+    margin-bottom: 1.5rem;
+    width: auto;
+    display: inline-block;
+}
+
+.tool-workspace .form-group {
+    margin-bottom: 1rem;
+}
+
+.tool-workspace label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--text-color, var(--text-color-light));
+}
+
+.tool-workspace input[type="file"],
+.tool-workspace input[type="text"],
+.tool-workspace input[type="password"],
+.tool-workspace input[type="number"],
+.tool-workspace textarea,
+.tool-workspace select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    background-color: var(--primary-bg, var(--primary-bg-light));
+    color: var(--text-color, var(--text-color-light));
+}
+
+.tool-workspace input[type="file"] {
+    padding: 0.5rem; /* Specific padding for file input */
+}
+
+.tool-workspace .file-list {
+    margin-top: 0.5rem;
+    font-size: 0.9em;
+}
+
+.tool-workspace .file-list-item {
+    background-color: var(--primary-bg, var(--primary-bg-light));
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.25rem;
+}
+
+/* Drag and Drop Overlay */
+.drag-drop-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    border: 5px dashed var(--accent-color, var(--accent-color-light));
+    box-sizing: border-box;
+}
+.drag-drop-overlay.active {
+    display: flex;
+}
+
+
+/* Loader */
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+.loader-content {
+    background: var(--card-bg, var(--card-bg-light));
+    padding: 2rem 3rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--soft-box-shadow);
+}
+.spinner {
+    border: 6px solid var(--primary-bg, var(--primary-bg-light));
+    border-top: 6px solid var(--accent-color, var(--accent-color-light));
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem auto;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+#loader-message {
+    font-size: 1.1rem;
+    color: var(--text-color, var(--text-color-light));
+}
+
+/* Alerts */
+.alert-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10001;
+    width: 300px;
+}
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius);
+    color: white;
+    font-weight: bold;
+    box-shadow: var(--soft-box-shadow);
+    opacity: 0;
+    transform: translateX(100%);
+    animation: showAlert 0.5s forwards, hideAlert 0.5s 4.5s forwards;
+}
+.alert.success { background-color: #4CAF50; }
+.alert.error { background-color: #f44336; }
+.alert.info { background-color: #2196F3; }
+
+@keyframes showAlert {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes hideAlert {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+
+/* PDF Viewer specific styles */
+#pdf-viewer-area {
+    width: 100%;
+    max-height: 600px; /* Or adjust as needed */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+    background-color: #e0e0e0; /* Neutral background for PDF pages */
+}
+
+#pdf-viewer-area canvas {
+    display: block;
+    margin: 10px auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.pdf-viewer-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.pdf-viewer-controls button, .pdf-viewer-controls span {
+    margin: 0 0.5rem;
+}
+
+
+footer {
+    text-align: center;
+    padding: 2rem 1.5rem; /* Increased padding */
+    margin-top: 2rem; /* Keep existing margin */
+    font-size: 0.9rem;
+    color: var(--text-color, var(--text-color-light));
+    background-color: var(--card-bg, var(--card-bg-light)); /* Give footer a subtle background */
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05); /* Soft shadow on top of footer */
+}
+
+.footer-nav {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap; /* Allow links to wrap on smaller screens */
+    justify-content: center;
+    gap: 1rem 1.5rem; /* Row and column gap */
+}
+
+.footer-nav a {
+    color: var(--text-color, var(--text-color-light));
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity var(--transition-speed);
+}
+
+.footer-nav a:hover,
+.footer-nav a:focus {
+    opacity: 1;
+    text-decoration: underline;
+    color: var(--accent-color, var(--accent-color-light)); /* Highlight with accent on hover */
+}
+
+.copyright {
+    opacity: 0.7;
+    margin: 0;
+}
+
+
+/* Responsive Grid & Layout */
+@media (max-width: 992px) { /* Tablet */
+    .tool-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .site-title-link h1 {
+        font-size: 1.6rem;
+    }
+    .header-nav ul {
+        gap: 0.5rem;
+    }
+    .header-nav a {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.95rem;
+    }
+    .header-right {
+        gap: 1rem;
+    }
+}
+/* style.css */
+
+/* ... (all existing styles) ... */
+
+/* Styles for Static Content Pages (About, Contact, Privacy) */
+.content-page-container {
+    background-color: var(--card-bg, var(--card-bg-light));
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--soft-box-shadow);
+    margin-top: 1rem; /* Adjust if needed, or remove if main already has padding */
+    color: var(--text-color, var(--text-color-light));
+}
+
+.content-page-container h2 {
+    color: var(--text-color, var(--text-color-light)); /* Ensure h2 color follows theme */
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--accent-color, var(--accent-color-light));
+    padding-bottom: 0.5rem;
+}
+
+.content-page-container h3 {
+    color: var(--text-color, var(--text-color-light));
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.content-page-container p,
+.content-page-container li {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: var(--text-color, var(--text-color-light)); /* Ensure text color follows theme */
+    opacity: 0.9;
+}
+
+.content-page-container ul {
+    list-style-position: outside;
+    padding-left: 20px;
+}
+
+.content-page-container a {
+    color: var(--accent-color, var(--accent-color-light));
+    text-decoration: none;
+}
+
+.content-page-container a:hover,
+.content-page-container a:focus {
+    text-decoration: underline;
+}
+
+.content-page-container section {
+    margin-bottom: 2rem;
+}
+
+/* Specific for contact page form placeholder */
+.contact-form-placeholder form {
+    margin-top: 1rem;
+    padding: 1.5rem;
+    border: 1px dashed var(--accent-color, var(--accent-color-light));
+    border-radius: var(--border-radius);
+}
+.contact-form-placeholder form button[disabled] {
+    background-color: #aaa; /* Grey out disabled button */
+    cursor: not-allowed;
+}
+.contact-form-placeholder form button[disabled]:hover {
+    background-color: #aaa;
+}
+
+/* Ensure responsiveness for content pages */
+@media (max-width: 768px) {
+    .content-page-container {
+        padding: 1.5rem;
+    }
+}
+@media (max-width: 600px) {
+    .content-page-container {
+        padding: 1rem;
+    }
+    .content-page-container h2 {
+        font-size: 1.6rem;
+    }
+    .content-page-container h3 {
+        font-size: 1.3rem;
+    }
+}
+@media (max-width: 768px) { /* Smaller tablets and large mobiles */
+    header {
+        padding: 1rem;
+    }
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start; /* Align items to the start */
+        gap: 0.75rem; /* Space between title and nav/theme block */
+    }
+    .header-right {
+        width: 100%; /* Make nav/theme block take full width */
+        justify-content: space-between; /* Space out nav and theme switcher */
+        flex-wrap: wrap; /* Allow theme switcher to wrap if needed */
+        gap: 0.5rem;
+    }
+    .header-nav ul {
+        /* Optional: If stacking nav items is preferred on mobile */
+        flex-direction: row; 
+        align-items: flex-start;
+        width: 100%;
+        gap: 0.25rem;
+    }
+    .header-nav a {
+        padding: 0.5rem 0; /* Adjust if stacking */
+    }
+    .theme-switcher {
+        /* No change needed if it just wraps, or align it if nav stacks */ 
+         margin-top: 0.5rem; 
+     justify-content: flex-start;
+    }
+
+    .footer-nav {
+        flex-direction: column; /* Stack footer links on smaller screens */
+        gap: 0.5rem;
+    }
+}
+
+
+@media (max-width: 600px) { /* Mobile */
+    .tool-grid {
+        grid-template-columns: 1fr;
+    }
+    main {
+        padding: 1rem;
+    }
+    /* Header adjustments already handled by 768px, can fine-tune if needed */
+    .site-title-link h1 {
+        font-size: 1.5rem;
+    }
+     .header-nav a {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.5rem;
+    }
+    .alert-container {
+        width: calc(100% - 40px);
+        left: 20px;
+        right: 20px;
+    }
+}
+
+/* Utility classes */
+.hidden {
+    display: none !important;
+}

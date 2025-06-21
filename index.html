@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro PDF Utility</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="assests/pdf.png">
+    <!-- PDF-LIB for creating/modifying PDFs -->
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <!-- PDF.js for rendering/viewing PDFs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        // Set worker_src for pdf.js
+        if (typeof pdfjsLib !== 'undefined') {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        }
+    </script>
+</head>
+<body>
+       <header>
+        <div class="header-content">
+            <a href="index.html" class="site-title-link"> <!-- Ensure this points to index.html -->
+                <h1>Pro PDF Utility</h1>
+            </a>
+            <div class="header-right">
+                <nav class="header-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li> <!-- Points to itself -->
+                        <li><a href="#tool-grid">Tools</a></li>
+                        <li><a href="about.html">About</a></li> <!-- CHANGED -->
+                        <li><a href="contact.html">Contact</a></li> <!-- CHANGED -->
+                    </ul>
+                </nav>
+                <div class="theme-switcher">
+                    <label for="darkModeToggle">Dark Mode</label>
+                    <input type="checkbox" id="darkModeToggle">
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <main>
+        <div id="tool-grid" class="tool-grid">
+            <!-- Tool cards will be injected here by JavaScript -->
+        </div>
+
+        <div id="tool-workspace-container" class="tool-workspace-container" style="display: none;">
+            <button id="back-to-tools" class="tool-button">← Back to Tools</button>
+            <h2 id="current-tool-title"></h2>
+            <div id="tool-workspace">
+                <!-- Specific tool UI will be loaded here -->
+            </div>
+        </div>
+
+        <div id="drag-drop-overlay" class="drag-drop-overlay">
+            <p>Drop files here</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-nav">
+            <a href="about.html">About</a>
+            <a href="privacy.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="https://github.com/DChitale/ProPdfUtility" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="copyright">© 2025 Pro PDF Utility. All operations are performed client-side.</p>
+    </footer>
+
+    <div id="loader" class="loader-overlay" style="display: none;">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p id="loader-message">Processing...</p>
+        </div>
+    </div>
+
+    <div id="alert-container" class="alert-container">
+        <!-- Alerts will be injected here -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
