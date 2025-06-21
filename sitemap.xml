@@ -4,7 +4,6 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 
 <url>
@@ -32,6 +31,12 @@
   <lastmod>2025-06-21T11:27:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+<url>
+  <loc>https://dchitale.github.io/ProPdfUtility/terms.html</loc>
+  <lastmod>2025-06-21T11:27:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
 
 
 </urlset>

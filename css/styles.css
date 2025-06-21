@@ -563,7 +563,6 @@ footer {
     }
 }
 
-
 @media (max-width: 600px) { /* Mobile */
     .tool-grid {
         grid-template-columns: 1fr;
